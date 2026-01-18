@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+
+<style>
+.overlay {
+  z-index: -1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* VIDEO BACKGROUND – MOBILE ONLY */
+.mobile-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+  display: none;
+}
+
+/* Show video ONLY on phones */
+@media (max-width: 768px) {
+  .mobile-video {
+    display: block;
+  }
+
+  body {
+    background: none !important;
+  }
+}
+
+
+body {
+  height: 100vh;
+  background-image: url("n.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+
+.overlay {
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  max-width: 400px;
+  padding: 40px;
+  z-index: 1;
+}
+
+.eye {
+  font-size: 50px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+h1 {
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.time-box {
+  width: 22%;
+}
+
+.time-box span {
+  font-size: 28px;
+  font-weight: bold;
+  display: block;
+}
+
+.time-box small {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #fff;
+  color: #000;
+}
+</style>
+</head>
+
+<body>
+<!-- Mobile Video Background -->
+<video class="mobile-video" autoplay muted loop playsinline>
+  <source src="v.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="container">
+  <div class="logo">
+  <img src="nnn.png" alt="Logo">
+</div>
+
+  <h1>COMING SOON</h1>
+  <p>This page holds something that could spark your excitement</p>
+
+  <div class="timer">
+    <div class="time-box">
+      <span id="days">00</span>
+      <small>DAYS</small>
+    </div>
+    <div class="time-box">
+      <span id="hours">00</span>
+      <small>HOURS</small>
+    </div>
+    <div class="time-box">
+      <span id="minutes">00</span>
+      <small>MINUTES</small>
+    </div>
+    <div class="time-box">
+      <span id="seconds">00</span>
+      <small>SECONDS</small>
+    </div>
+  </div>
+
+  <button>STAY TUNED</button>
+</div>
+
+<script>
+// Set countdown to 4 days from now
+const countdownDate = new Date();
+countdownDate.setDate(countdownDate.getDate() + 4);
+
+function updateTimer() {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+
+</body>
+</html>
